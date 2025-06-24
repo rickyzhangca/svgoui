@@ -1,6 +1,6 @@
-import { type PluginConfigUI, plugins } from "./plugins";
+import { type PluginConfigUI, type PluginName, plugins } from "./plugins";
 
-export const defaultPluginLabels: PluginConfigUI["label"][] = [
+export const defaultPluginLabels: PluginName[] = [
 	"removeDoctype",
 	"removeXMLProcInst",
 	"removeComments",
@@ -41,7 +41,7 @@ const isPlugin = (p: PluginConfigUI | undefined): p is PluginConfigUI =>
 
 export const defaultPlugins: PluginConfigUI[] = defaultPluginLabels
 	.map((label) => {
-		const config = plugins.find((p: PluginConfigUI) => p.config === label);
+		const config = plugins.find((p: PluginConfigUI) => p.name === label);
 		return config;
 	})
 	.filter(isPlugin);

@@ -1,5 +1,6 @@
 import { CircleQuestionMarkIcon } from "lucide-react";
 
+import { descriptions } from "@/meta/descriptions";
 import type { PluginConfigUI } from "@/meta/plugins";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -13,6 +14,8 @@ type PluginProps = {
 };
 
 export const Plugin = ({ plugin, setPlugin }: PluginProps) => {
+	const description = descriptions[plugin.name];
+
 	return (
 		<div className="flex items-center space-x-2">
 			<Switch
@@ -23,21 +26,23 @@ export const Plugin = ({ plugin, setPlugin }: PluginProps) => {
 				id={plugin.label}
 			/>
 			<Label htmlFor={plugin.label}>{plugin.label}</Label>
-			<HoverCard openDelay={100} closeDelay={100}>
-				<HoverCardTrigger>
-					<CircleQuestionMarkIcon className="size-4 min-w-4 opacity-50" />
-				</HoverCardTrigger>
-				<HoverCardContent className="px-5 prose w-fit md:max-w-[600px] xl:max-w-[800px] max-w-[calc(100vw-1rem)]">
-					<ReactMarkdown
-						remarkPlugins={[remarkGfm]}
-						components={{
-							a: ({ node, ...props }) => <a {...props} target="_blank" />,
-						}}
-					>
-						{plugin.desc}
-					</ReactMarkdown>
-				</HoverCardContent>
-			</HoverCard>
+			{description && (
+				<HoverCard openDelay={100} closeDelay={100}>
+					<HoverCardTrigger>
+						<CircleQuestionMarkIcon className="size-4 min-w-4 opacity-50" />
+					</HoverCardTrigger>
+					<HoverCardContent className="px-5 prose w-fit md:max-w-[600px] xl:max-w-[800px] max-w-[calc(100vw-1rem)]">
+						<ReactMarkdown
+							remarkPlugins={[remarkGfm]}
+							components={{
+								a: ({ node, ...props }) => <a {...props} target="_blank" />,
+							}}
+						>
+							{description}
+						</ReactMarkdown>
+					</HoverCardContent>
+				</HoverCard>
+			)}
 		</div>
 	);
 };
