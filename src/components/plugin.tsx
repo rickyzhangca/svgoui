@@ -1,6 +1,6 @@
-import type { PluginConfigUI } from "@/meta/default-plugins";
 import { CircleQuestionMarkIcon } from "lucide-react";
 
+import type { PluginConfigUI } from "@/meta/plugins";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Switch } from "./animate-ui/radix/switch";
@@ -27,17 +27,15 @@ export const Plugin = ({ plugin, setPlugin }: PluginProps) => {
 				<HoverCardTrigger>
 					<CircleQuestionMarkIcon className="size-4 min-w-4 opacity-50" />
 				</HoverCardTrigger>
-				<HoverCardContent className="px-5 w-fit max-w-[calc(100vw-1rem)]">
-					<p className="prose">
-						<ReactMarkdown
-							remarkPlugins={[remarkGfm]}
-							components={{
-								a: ({ node, ...props }) => <a {...props} target="_blank" />,
-							}}
-						>
-							{plugin.desc}
-						</ReactMarkdown>
-					</p>
+				<HoverCardContent className="px-5 prose w-fit md:max-w-[600px] xl:max-w-[800px] max-w-[calc(100vw-1rem)]">
+					<ReactMarkdown
+						remarkPlugins={[remarkGfm]}
+						components={{
+							a: ({ node, ...props }) => <a {...props} target="_blank" />,
+						}}
+					>
+						{plugin.desc}
+					</ReactMarkdown>
 				</HoverCardContent>
 			</HoverCard>
 		</div>
