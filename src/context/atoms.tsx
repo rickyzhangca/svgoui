@@ -22,7 +22,7 @@ export const shouldUseMultipassAtom = atomWithStorage(
 );
 export const pluginConfigAtom = atomWithStorage("config", defaultPlugins);
 
-export const svgBeforeAtom = atomWithStorage("svgBefore", demoSvg);
+export const svgBeforeAtom = atom(demoSvg);
 
 export const svgAfterAtom = atom((get) => {
 	const before = get(svgBeforeAtom);
