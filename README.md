@@ -1,54 +1,78 @@
-# React + TypeScript + Vite
+# SVGOUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Fast, open-source UI for [SVGO](https://github.com/svg/svgo) – compress, optimize and minify SVGs right in your browser.
 
-Currently, two official plugins are available:
+> Inspired by [SVGOMG](https://github.com/jakearchibald/svgomg) but rebuilt from scratch with modern React, Tailwind CSS and Jotai.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+• **Drag-and-drop & Paste** – drop an `.svg` anywhere or paste SVG markup/file.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+• **Real-time compression** – runs SVGO in the browser; see size before/after and percentage saved instantly.
+
+• **Plugin toggles** – enable / disable individual SVGO plugins, including multipass, prettify and more (state is persisted in `localStorage`).
+
+• **Markup & Image views** – switch between rendered image and formatted SVG markup.
+
+• **Offline** – everything happens client-side; no files leave your computer.
+
+## 📦 Tech Stack
+
+| Layer       | Library / Tool |
+|-------------|----------------|
+| Front-end   | React + TypeScript |
+| Build       | Vite |
+| State       | Jotai |
+| Styling     | Tailwind CSS |
+| Icons       | [Lucide](https://lucide.dev) |
+| Notifications | [Sonner](https://sonner.emilkowal.dev) |
+| Core        | SVGO (browser build) |
+
+## 🚀 Getting Started
+
+```bash
+# clone
+git clone https://github.com/your-name/svgoui.git
+cd svgoui
+
+# install (uses pnpm ✨)
+pnpm install
+
+# start dev server
+pnpm dev
+
+# build for production
+pnpm build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open `http://localhost:5173` and start optimizing!
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Project Structure (high-level)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
 ```
+src/
+├─ assets/          demo SVGs & images
+├─ components/      reusable UI (action-bar, toast, nav-bar, …)
+├─ context/         Jotai atoms for global state
+├─ views/           page-level views (image, markup)
+├─ App.tsx          application root
+└─ main.tsx         Vite entry point
+```
+
+## 📝 Development Notes
+
+• Uses **pnpm** workspaces; if you prefer npm/yarn you can, but lockfile is `.pnpm-lock.yaml`.
+
+• Tailwind utility classes prefer `gap-*` for spacing and Flexbox layout per coding guidelines.
+
+• All new files / folders are **kebab-case**.
+
+## 🙏 Acknowledgements
+
+* [SVGO](https://github.com/svg/svgo) – powerful SVG optimizer
+* [SVGOMG](https://github.com/jakearchibald/svgomg) – original inspiration
+
+## 📄 License
+
+MIT © 2025 Rick Zhang
