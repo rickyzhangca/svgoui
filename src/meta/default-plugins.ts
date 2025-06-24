@@ -1,6 +1,6 @@
 import { type PluginConfigUI, type PluginName, plugins } from "./plugins";
 
-export const defaultPluginLabels: PluginName[] = [
+export const defaultPluginNames: PluginName[] = [
 	"removeDoctype",
 	"removeXMLProcInst",
 	"removeComments",
@@ -39,9 +39,9 @@ export const defaultPluginLabels: PluginName[] = [
 const isPlugin = (p: PluginConfigUI | undefined): p is PluginConfigUI =>
 	p !== undefined;
 
-export const defaultPlugins: PluginConfigUI[] = defaultPluginLabels
-	.map((label) => {
-		const config = plugins.find((p: PluginConfigUI) => p.name === label);
+export const defaultPlugins: PluginConfigUI[] = defaultPluginNames
+	.map((name) => {
+		const config = plugins.find((p: PluginConfigUI) => p.name === name);
 		return config;
 	})
 	.filter(isPlugin);
