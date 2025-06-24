@@ -11,7 +11,8 @@ export const SvgNode = memo(({ data }: SvgNodeProps) => {
 	return (
 		<img
 			src={`data:image/svg+xml;utf8,${encodeURIComponent(data.svg)}`}
-			alt=""
+			alt="svg node on canvas"
+			className="border-2 border-white/50"
 		/>
 	);
 });
