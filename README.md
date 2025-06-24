@@ -26,7 +26,7 @@ Fast, open-source UI for [SVGO](https://github.com/svg/svgo) – compress, optim
 | State       | Jotai |
 | Styling     | Tailwind CSS |
 | Icons       | [Lucide](https://lucide.dev) |
-| Notifications | [Sonner](https://sonner.emilkowal.dev) |
+| Notifications | [Sonner](https://sonner.emilkowal.ski/) |
 | Core        | SVGO (browser build) |
 
 ## 🚀 Getting Started
