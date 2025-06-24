@@ -41,7 +41,7 @@ const isPlugin = (p: PluginConfigUI | undefined): p is PluginConfigUI =>
 
 export const defaultPlugins: PluginConfigUI[] = defaultPluginLabels
 	.map((label) => {
-		const config = plugins.find((p: PluginConfigUI) => p.label === label);
+		const config = plugins.find((p: PluginConfigUI) => p.config === label);
 		return config;
 	})
 	.filter(isPlugin);
