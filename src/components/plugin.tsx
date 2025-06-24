@@ -17,7 +17,7 @@ export const Plugin = ({ plugin, setPlugin }: PluginProps) => {
 	const description = descriptions[plugin.name];
 
 	return (
-		<div className="flex items-center space-x-2">
+		<div className="flex items-center gap-1.5">
 			<Switch
 				checked={plugin.enabled}
 				onCheckedChange={(checked) =>

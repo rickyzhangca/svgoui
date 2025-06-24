@@ -12,6 +12,7 @@ export const showSidebarAtom = atomWithStorage("showSidebar", true);
 
 export const viewAtom = atomWithStorage<"image" | "markup">("view", "image");
 
+export const floatPrecisionAtom = atomWithStorage("floatPrecision", 3);
 export const shouldPrettifyMarkupAtom = atomWithStorage(
 	"shouldPrettifyMarkup",
 	true,
@@ -27,6 +28,7 @@ export const svgBeforeAtom = atom(demoSvg);
 export const svgAfterAtom = atom((get) => {
 	const before = get(svgBeforeAtom);
 	const config = get(pluginConfigAtom);
+	const floatPrecision = get(floatPrecisionAtom);
 
 	const after = optimize(before, {
 		js2svg: {
@@ -35,6 +37,7 @@ export const svgAfterAtom = atom((get) => {
 		},
 		multipass: get(shouldUseMultipassAtom),
 		plugins: config.filter((p) => p.enabled).map((p) => p.config),
+		floatPrecision,
 	});
 
 	toast.custom(() => <Toast type="optimized" />, { duration: 1000 });
