@@ -87,7 +87,11 @@ const App = () => {
 			}
 
 			const text = clipboard.getData("text/plain");
-			if (text?.trim().startsWith("<svg")) {
+			const trimmedText = text?.trim();
+			if (
+				trimmedText &&
+				(trimmedText.startsWith("<svg") || trimmedText.startsWith("<?xml"))
+			) {
 				setSvgBefore(text);
 				return;
 			}
@@ -97,7 +101,11 @@ const App = () => {
 			) as DataTransferItem[]) {
 				if (item.type === "image/svg+xml" || item.type === "text/html") {
 					item.getAsString((str: string) => {
-						if (str?.trim().startsWith("<svg")) {
+						const trimmedStr = str?.trim();
+						if (
+							trimmedStr &&
+							(trimmedStr.startsWith("<svg") || trimmedStr.startsWith("<?xml"))
+						) {
 							setSvgBefore(str);
 						}
 					});
